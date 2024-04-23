@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -97,6 +100,37 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "memoize-pipe-lib": {
+      "projectType": "library",
+      "root": "projects/memoize-pipe-lib",
+      "sourceRoot": "projects/memoize-pipe-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/memoize-pipe-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/memoize-pipe-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/memoize-pipe-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/memoize-pipe-lib/src/test.ts",
+            "tsConfig": "projects/memoize-pipe-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/memoize-pipe-lib/karma.conf.js"
           }
         }
       }

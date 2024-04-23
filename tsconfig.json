@@ -9,6 +9,12 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "paths": {
+      "memoize-pipe-lib": [
+        "dist/memoize-pipe-lib/memoize-pipe-lib",
+        "dist/memoize-pipe-lib"
+      ]
+    },
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
