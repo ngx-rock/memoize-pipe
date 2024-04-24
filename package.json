@@ -7,9 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lib:publish": "ng build memoize-pipe-lib && cd dist/memoize-pipe-lib && npm publish --registry http://localhost:4873"
+    "copy-libdocs": "cp README.md LICENSE dist/memoize-pipe-lib",
+    "lib:local:publish": "ng build memoize-pipe-lib  && npm run copy-libdocs && cd dist/memoize-pipe-lib && npm publish --registry http://localhost:4873",
+    "lib:publish": "ng build memoize-pipe-lib && npm run copy-libdocs && cd dist/memoize-pipe-lib && npm publish --access=public"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
     "@angular/common": "~13.3.0",
@@ -37,5 +38,13 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "ng-packagr": "^13.0.0",
     "typescript": "~4.6.2"
-  }
+  },
+  "description": "",
+  "main": "karma.conf.js",
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ngx-rock/memoize-pipe/issues"
+  },
+  "homepage": "https://github.com/ngx-rock/memoize-pipe#readme"
 }
