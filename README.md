@@ -2,19 +2,16 @@
  
 [![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
 
-*Memoize Pipe* – универсальный, строго типизированный `pipe` для мемоизации вычислений в шаблоне.
+*Memoize Pipe* – a universal, strictly typed pipe for memoizing computations in Angular templates.
 
-**Мотивация**
+## About
 
-В Angular вызывают функции в шаблоне на каждый обход проверки изменений. 
-Чтобы минимизировать вычисления функция, рекомендуется использовать механизм `pipe`. 
-Но создавать их ради только для одного-двух применений выглядит избыточно.
+In Angular, functions are called in templates on each change detection cycle. To minimize computational overhead, it is recommended to use the pipe mechanism. However, creating pipes just for one or two use cases seems excessive.
+This project aims to solve this problem.
 
-Этот проект призван решить эту проблему.
+## Usage
 
-## Как использовать
-
-Преобразуем вызов функции в `pipe`:
+Convert the function call to `pipe`:
 
 ```
   @Component({
@@ -30,8 +27,8 @@
   }
 ```
 
-Импортируем из библиотеки pipe `fn` и вставляем в шаблон, аргументы функции передаём, как обычные параметры для любого
-pipe.
+We import pipe `fn` from the library and insert it into the template. 
+Function arguments are passed as usual parameters.
 
 ```
   @Component({
@@ -47,12 +44,10 @@ pipe.
   }
 ```
 
-С минимальными изменения достигаем значительную оптимизацию производительности.
+### Saving the context
 
-### Сохранение контекста
-
-Не всегда функция в компоненте может быть чистой и не зависеть от внешних аргументов.
-Для сохранения контекста `this` надо преобразовать функцию в стрелочный формат.
+It isn't always possible for a function in a component to be pure and independent of external arguments.
+To save the `this` you should convert the function into arrow format.
 
 ```
   @Component(...)
@@ -62,3 +57,30 @@ pipe.
     }
   }
 ```
+
+## Installation
+
+Install `memoize-pipe` from npm:
+
+```
+  npm i @ngx-rock/memoize-pipe
+```
+
+Import the module:
+
+```
+  import { MemoizeModule } from "@ngx-rock/memoize-pipe";
+
+  @NgModule({
+	  ...
+	  imports: [MemoizeModule,...]
+	  ...
+  })
+```
+
+## Compatibility
+
+| memoize-pipe | Angular   |
+|--------------|-----------|
+| 0.1.x        | => 13.x.x |
+
