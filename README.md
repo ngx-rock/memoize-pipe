@@ -72,9 +72,9 @@ Import the module:
   import { MemoizeModule } from "@ngx-rock/memoize-pipe";
 
   @NgModule({
-	  ...
-	  imports: [MemoizeModule,...]
-	  ...
+    ...
+    imports: [MemoizeModule,...]
+    ...
   })
 ```
 
@@ -84,3 +84,6 @@ Import the module:
 |--------------|-----------|
 | 0.1.x        | => 13.x.x |
 
+---
+
+**[English](README.md)** [Русский](README_RU.md)
