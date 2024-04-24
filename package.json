@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lib:publish": "ng build memoize-pipe-lib && cd dist/memoize-pipe-lib && npm publish --registry http://localhost:4873"
   },
   "private": true,
   "dependencies": {
