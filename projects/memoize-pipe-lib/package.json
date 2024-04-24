@@ -1,6 +1,6 @@
 {
-  "name": "memoize-pipe-lib",
-  "version": "0.1.0",
+  "name": "@ngx-rock/memoize-pipe",
+  "version": "0.1.1",
   "peerDependencies": {
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0"

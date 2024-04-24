@@ -1,24 +1,62 @@
-# MemoizePipeLib
+# Memoize Pipe
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+*Memoize Pipe* – универсальный, строго типизированный `pipe` для мемоизации вычислений в шаблоне.
 
-## Code scaffolding
+**Мотивация**
 
-Run `ng generate component component-name --project memoize-pipe-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project memoize-pipe-lib`.
-> Note: Don't forget to add `--project memoize-pipe-lib` or else it will be added to the default project in your `angular.json` file. 
+В Angular вызывают функции в шаблоне на каждый обход проверки изменений. 
+Чтобы минимизировать вычисления функция, рекомендуется использовать механизм `pipe`. 
+Но создавать их ради только для одного-двух применений выглядит избыточно.
 
-## Build
+Этот проект призван решить эту проблему.
 
-Run `ng build memoize-pipe-lib` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Как использовать
 
-## Publishing
+Преобразуем вызов функции в `pipe`:
 
-After building your library with `ng build memoize-pipe-lib`, go to the dist folder `cd dist/memoize-pipe-lib` and run `npm publish`.
+```
+  @Component({
+    ...
+    template: `
+      {{ heavyComputation(person, index) }}
+    `,
+  })
+  export class AppComponent {
+    heavyComputation(name: string, index: number) {
+      ... very heavy computation
+    }
+  }
+```
 
-## Running unit tests
+Импортируем из библиотеки pipe `fn` и вставляем в шаблон, аргументы функции передаём, как обычные параметры для любого
+pipe.
 
-Run `ng test memoize-pipe-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+  @Component({
+    ...
+    template: `
+      {{ heavyComputation | fn : person : index }}
+    `,
+  })
+  export class AppComponent {
+    heavyComputation(name: string, index: number) {
+      ... very heavy computation
+    }
+  }
+```
 
-## Further help
+С минимальными изменения достигаем значительную оптимизацию производительности.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Сохранение контекста
+
+Не всегда функция в компоненте может быть чистой и не зависеть от внешних аргументов.
+Для сохранения контекста `this` надо преобразовать функцию в стрелочный формат.
+
+```
+  @Component(...)
+  export class AppComponent {
+    heavyComputation = (name: string, index: number) => {
+      ... very heavy computation
+    }
+  }
+```
