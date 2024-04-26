@@ -1,8 +1,8 @@
 {
   "name": "@ngx-rock/memoize-pipe",
-  "description": "Universal pipe for memoization of functions",
+  "description": "Universal angular pipe for memoization of functions",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ngx-rock/memoize-pipe.git"
@@ -12,17 +12,21 @@
   },
   "homepage": "https://github.com/ngx-rock/memoize-pipe#readme",
   "peerDependencies": {
-    "@angular/common": ">=14.3.0",
-    "@angular/core": ">=14.3.0"
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "keywords": [
     "angular",
+    "angular pipe",
+    "angular memoization",
     "ng",
-    "memo",
     "pipe",
-    "memoize"
+    "memoization",
+    "optimization",
+    "performance",
+    "caching"
   ]
 }

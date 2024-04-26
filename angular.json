@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "memoize-pipe:build:production"
+              "buildTarget": "memoize-pipe:build:production"
             },
             "development": {
-              "browserTarget": "memoize-pipe:build:development"
+              "buildTarget": "memoize-pipe:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "memoize-pipe:build"
+            "buildTarget": "memoize-pipe:build"
           }
         },
         "test": {
