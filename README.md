@@ -69,11 +69,11 @@ Install `memoize-pipe` from npm:
 Import the module:
 
 ```
-  import { MemoizeModule } from "@ngx-rock/memoize-pipe";
+  import { FnPipe } from "@ngx-rock/memoize-pipe";
 
   @NgModule({
     ...
-    imports: [MemoizeModule,...]
+    imports: [ FnPipe,... ]
     ...
   })
 ```
@@ -83,6 +83,7 @@ Import the module:
 | memoize-pipe | Angular   |
 |--------------|-----------|
 | 0.1.x        | => 13.x.x |
+| 0.2.x        | => 14.x.x |
 
 ---
 

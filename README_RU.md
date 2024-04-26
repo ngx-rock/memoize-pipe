@@ -73,13 +73,13 @@
 И импортируем модуль:
 
 ```
-  import { MemoizeModule } from "@ngx-rock/memoize-pipe";
+  import { FnPipe } from "@ngx-rock/memoize-pipe";
 
-	@NgModule({
-	  ...
-	  imports: [MemoizeModule,...]
-	  ...
-	})
+  @NgModule({
+    ...
+    imports: [ FnPipe,... ]
+    ...
+  })
 ```
 
 ### Совместимость
@@ -87,6 +87,7 @@
 | memoize-pipe | Angular   |
 |--------------|-----------|
 | 0.1.x        | => 13.x.x |
+| 0.2.x        | => 14.x.x |
 
 ---
 
