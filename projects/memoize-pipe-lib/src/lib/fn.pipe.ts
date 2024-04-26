@@ -8,7 +8,8 @@ import { Pipe, PipeTransform } from '@angular/core';
  * @return {ReturnType<T>} The result of applying the function with the provided arguments.
  */
 @Pipe({
-  name: 'fn'
+  name: 'fn',
+  standalone: true
 })
 export class FnPipe implements PipeTransform {
   transform<T extends (...args: any[]) => any>(func: T, ...args: Parameters<T>): ReturnType<T> {
