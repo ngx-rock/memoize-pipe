@@ -82,8 +82,8 @@ Import the module:
 
 | memoize-pipe | Angular   |
 |--------------|-----------|
-| 0.1.x        | => 13.x.x |
-| 0.2.x        | => 14.x.x |
+| 0.x.x        | => 13.x.x |
+| 1.x.x        | => 14.x.x |
 
 ---
 
