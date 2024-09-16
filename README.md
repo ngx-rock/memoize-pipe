@@ -1,6 +1,6 @@
 # Memoize Pipe
  
-[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
+[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ngx-rock/memoize-pipe/blob/main/LICENSE)
 
 *Memoize Pipe* – a universal, strictly typed pipe for memoizing computations in Angular templates.
 
@@ -66,13 +66,14 @@ Install `memoize-pipe` from npm:
   npm i @ngx-rock/memoize-pipe
 ```
 
-Import the module:
+Support for standalone modules starting from version 14.x.x:
 
 ```
   import { FnPipe } from "@ngx-rock/memoize-pipe";
 
-  @NgModule({
+  @Component({
     ...
+    standalone: true,
     imports: [ FnPipe,... ]
     ...
   })
@@ -85,6 +86,7 @@ Import the module:
 | 0.x.x        | => 13.x.x |
 | 1.x.x        | => 14.x.x |
 | 2.x.x        | => 17.x.x |
+| 18.x.x       | => 18.x.x |
 ---
 
-**[English](README.md)** [Русский](README_RU.md)
+**[English](README.md)** | [Русский](README_RU.md)

@@ -1,6 +1,6 @@
 # Memoize Pipe
- 
-[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
+
+[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ngx-rock/memoize-pipe/blob/main/LICENSE)
 
 *Memoize Pipe* – универсальный, строго типизированный `pipe` для мемоизации вычислений в шаблоне.
 
@@ -70,13 +70,14 @@
   npm i @ngx-rock/memoize-pipe
 ```
 
-И импортируем модуль:
+Поддержка автономных модулей, начиная с версии 14
 
 ```
   import { FnPipe } from "@ngx-rock/memoize-pipe";
 
-  @NgModule({
+  @Component({
     ...
+    standalone: true,
     imports: [ FnPipe,... ]
     ...
   })
@@ -89,7 +90,7 @@
 | 0.x.x        | => 13.x.x |
 | 1.x.x        | => 14.x.x |
 | 2.x.x        | => 17.x.x |
-
+| 18.x.x       | => 18.x.x |
 ---
 
-[English](README.md) **[Русский](README_RU.md)**
+[English](README.md) | **[Русский](README_RU.md)**
