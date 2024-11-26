@@ -87,6 +87,7 @@ Support for standalone modules starting from version 14.x.x:
 | 1.x.x        | => 14.x.x |
 | 2.x.x        | => 17.x.x |
 | 18.x.x       | => 18.x.x |
+| 19.x.x       | => 19.x.x |
 ---
 
 **[English](README.md)** | [Русский](README_RU.md)
