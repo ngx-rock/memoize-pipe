@@ -1,6 +1,6 @@
 {
   "name": "@ngx-rock/memoize-pipe",
-  "version": "19.0.0",
+  "version": "20.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,31 +12,31 @@
     "lib:publish": "ng build memoize-pipe-lib && npm run copy-libdocs && cd dist/memoize-pipe-lib && npm publish --access=public"
   },
   "dependencies": {
-    "@angular/animations": "^19.0.1",
-    "@angular/common": "^19.0.1",
-    "@angular/compiler": "^19.0.1",
-    "@angular/core": "^19.0.1",
-    "@angular/forms": "^19.0.1",
-    "@angular/platform-browser": "^19.0.1",
-    "@angular/platform-browser-dynamic": "^19.0.1",
-    "@angular/router": "^19.0.1",
-    "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
+    "@angular/animations": "^19.2.7",
+    "@angular/common": "^19.2.7",
+    "@angular/compiler": "^19.2.7",
+    "@angular/core": "^19.2.7",
+    "@angular/forms": "^19.2.7",
+    "@angular/platform-browser": "^19.2.7",
+    "@angular/platform-browser-dynamic": "^19.2.7",
+    "@angular/router": "^19.2.7",
+    "rxjs": "~7.5.7",
+    "tslib": "^2.8.1",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.0.2",
-    "@angular/cli": "^19.0.2",
-    "@angular/compiler-cli": "^19.0.1",
-    "@types/jasmine": "~5.1.4",
-    "@types/node": "^18.19.66",
+    "@angular-devkit/build-angular": "^19.2.8",
+    "@angular/cli": "^19.2.8",
+    "@angular/compiler-cli": "^19.2.7",
+    "@types/jasmine": "~5.1.7",
+    "@types/node": "^18.19.86",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^19.0.1",
+    "ng-packagr": "^19.2.2",
     "typescript": "~5.6.3"
   },
   "description": "",
@@ -46,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/ngx-rock/memoize-pipe/issues"
   },
-  "homepage": "https://github.com/ngx-rock/memoize-pipe#readme"
+  "homepage": "https://github.com/ngx-rock/memoize-pipe#readme",
+  "packageManager": "pnpm@10.12.3+sha512.467df2c586056165580ad6dfb54ceaad94c5a30f80893ebdec5a44c5aa73c205ae4a5bb9d5ed6bb84ea7c249ece786642bbb49d06a307df218d03da41c317417"
 }
