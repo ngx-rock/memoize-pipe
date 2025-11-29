@@ -2,7 +2,8 @@
   "name": "@ngx-rock/memoize-pipe",
   "description": "Universal angular pipe for memoization of functions",
   "license": "MIT",
-  "version": "20.0.0",
+  "version": "21.0.0",
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ngx-rock/memoize-pipe.git"
@@ -11,6 +12,11 @@
     "url": "https://github.com/ngx-rock/memoize-pipe/issues"
   },
   "homepage": "https://github.com/ngx-rock/memoize-pipe#readme",
+  "engines": {
+    "node": "^18.19.0 || ^20.9.0 || ^22.0.0",
+    "npm": ">=9.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "peerDependencies": {
     "@angular/common": ">=19.0.0",
     "@angular/core": ">=19.0.0"
