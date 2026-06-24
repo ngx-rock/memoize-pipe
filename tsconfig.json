@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
     "esModuleInterop": true,
     "strict": true,
     "noImplicitOverride": true,

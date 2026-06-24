@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { vi } from 'vitest';
 import { FnPipe } from './fn.pipe';
 
 describe('FnPipe', () => {
@@ -16,7 +17,7 @@ describe('FnPipe', () => {
   });
 
   it('should call a function with no arguments', () => {
-    const mockFunc = jasmine.createSpy('mockFunc').and.returnValue(42);
+    const mockFunc = vi.fn().mockReturnValue(42);
     const result = pipe.transform(mockFunc);
 
     expect(mockFunc).toHaveBeenCalled();
@@ -24,7 +25,7 @@ describe('FnPipe', () => {
   });
 
   it('should call a function with single argument', () => {
-    const mockFunc = jasmine.createSpy('mockFunc').and.returnValue('hello');
+    const mockFunc = vi.fn().mockReturnValue('hello');
     const result = pipe.transform(mockFunc, 'world');
 
     expect(mockFunc).toHaveBeenCalledWith('world');
@@ -32,7 +33,7 @@ describe('FnPipe', () => {
   });
 
   it('should call a function with multiple arguments', () => {
-    const mockFunc = jasmine.createSpy('mockFunc').and.returnValue(10);
+    const mockFunc = vi.fn().mockReturnValue(10);
     const result = pipe.transform(mockFunc, 5, 2);
 
     expect(mockFunc).toHaveBeenCalledWith(5, 2);
