@@ -1,8 +1,8 @@
 # Angular Memoize Pipe - `fn` pipe для производительности шаблонов
 
-[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
-[![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ngx-rock/memoize-pipe/blob/main/LICENSE)
 [![clone-alert](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ngx-rock/memoize-pipe/main/clone-alert-badge.json)](https://github.com/BaryshevRS/clone-alert)
+[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
+
 
 > English README is the source of truth. This file is a Russian translation.
 

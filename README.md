@@ -1,8 +1,8 @@
 # Angular Memoize Pipe - `fn` pipe for template performance
 
-[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
-[![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ngx-rock/memoize-pipe/blob/main/LICENSE)
 [![clone-alert](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ngx-rock/memoize-pipe/main/clone-alert-badge.json)](https://github.com/BaryshevRS/clone-alert)
+[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
+
 
 `@ngx-rock/memoize-pipe` is a small standalone Angular pipe for calling functions from templates without re-running them on every change detection pass.
 
