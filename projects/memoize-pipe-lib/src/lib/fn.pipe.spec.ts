@@ -1,6 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { vi } from 'vitest';
 import { FnPipe } from './fn.pipe';
+
+@Component({
+  standalone: true,
+  imports: [FnPipe],
+  template: `{{ compute | fn : value }}`
+})
+class FnPipeHostComponent {
+  value = 21;
+
+  compute = vi.fn((value: number): number => value * 2);
+}
 
 describe('FnPipe', () => {
   let pipe: FnPipe;
@@ -50,5 +62,19 @@ describe('FnPipe', () => {
 
     expect(stringResult).toBe('Hello world');
     expect(numberResult).toBe(8);
+  });
+
+  it('should not call the template function again when pipe inputs stay unchanged', () => {
+    const fixture = TestBed.createComponent(FnPipeHostComponent);
+
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent.trim()).toBe('42');
+    expect(fixture.componentInstance.compute).toHaveBeenCalledTimes(1);
+
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent.trim()).toBe('42');
+    expect(fixture.componentInstance.compute).toHaveBeenCalledTimes(1);
   });
 });

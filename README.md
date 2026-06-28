@@ -1,173 +1,276 @@
-# Memoize Pipe
+# Angular Memoize Pipe - `fn` pipe for template performance
 
-[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ngx-rock/memoize-pipe/blob/main/LICENSE)
+[![npm version](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe.svg)](https://badge.fury.io/js/@ngx-rock%2Fmemoize-pipe)
+[![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ngx-rock/memoize-pipe/blob/main/LICENSE)
+[![clone-alert](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ngx-rock/memoize-pipe/main/clone-alert-badge.json)](https://github.com/BaryshevRS/clone-alert)
 
-*Memoize Pipe* – a universal `pipe` for memoizing computations in Angular templates.
+`@ngx-rock/memoize-pipe` is a small standalone Angular pipe for calling functions from templates without re-running them on every change detection pass.
 
-## Description
+It provides one pipe, `fn`, that lets Angular treat a template function call like a pure pipe binding. When the function reference and arguments stay unchanged, Angular keeps the previous pipe result and does not call the function again.
 
-In Angular, functions in templates are called on every change detection cycle. 
-To minimize redundant computations, it's recommended to use the `pipe` mechanism. 
-However, creating separate pipes for one-time use seems excessive.
+## At A Glance
 
-**Memoize Pipe** solves this problem by providing a universal pipe that automatically caches function results based on their arguments.
+- Package: `@ngx-rock/memoize-pipe`
+- Export: `FnPipe`
+- Template syntax: `{{ myFunction | fn : arg1 : arg2 }}`
+- Purpose: avoid repeated synchronous function calls in Angular templates when inputs are unchanged
+- Mechanism: Angular pure pipe change detection, not a custom global memoization cache
+- Best for: formatting, filtering, sorting, totals, and derived display values
+- Not for: async functions, side effects, hidden mutable state, or deep equality
 
-### What is memoization?
+Common search phrases this package answers:
 
-Memoization is an optimization technique where the results of expensive function calls are cached. When the function is called again with the same arguments, the cached result is returned, significantly improving performance.
-
-## Usage
-
-### Basic Example
-
-Transform a regular function call into an optimized one using the `fn` pipe:
-
-**Before:**
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <div>{{ formatUserData(user, preferences) }}</div>
-    <div>{{ calculateTotal(items) }}</div>
-  `,
-})
-export class AppComponent {
-  formatUserData(user: User, preferences: UserPreferences): string {
-    // Expensive computation
-    return `${user.name} (${preferences.theme})`;
-  }
-
-  calculateTotal(items: CartItem[]): number {
-    // Complex calculation logic
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  }
-}
-```
-
-**After:**
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <div>{{ formatUserData | fn : user : preferences }}</div>
-    <div>{{ calculateTotal | fn : items }}</div>
-  `,
-})
-export class AppComponent {
-  formatUserData(user: User, preferences: UserPreferences): string {
-    // This function will now only be called when arguments change
-    return `${user.name} (${preferences.theme})`;
-  }
-
-  calculateTotal(items: CartItem[]): number {
-    // Recalculation only when the items array changes
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  }
-}
-```
-
-### Preserving Context
-
-For functions that use `this` (component properties), convert them to arrow functions:
-
-```typescript
-@Component({
-  selector: 'app-context',
-  template: `
-    <div>{{ processData | fn : inputData }}</div>
-  `,
-})
-export class AppComponent {
-  private multiplier = 10;
-
-  // Arrow function preserves the 'this' context
-  processData = (data: number[]): number[] => {
-    return data.map(item => item * this.multiplier);
-  }
-}
-```
+- Angular function in template performance
+- avoid calling method in Angular template
+- memoize Angular template function
+- Angular pure pipe for function calls
+- optimize Angular change detection in templates
 
 ## Installation
 
-### npm
 ```bash
 npm install @ngx-rock/memoize-pipe
 ```
 
-### pnpm
 ```bash
 pnpm add @ngx-rock/memoize-pipe
 ```
 
-### yarn
 ```bash
 yarn add @ngx-rock/memoize-pipe
 ```
 
-### Adding to Your Application
+## Quick Usage
 
-**Standalone components (recommended):**
+Import `FnPipe` into a standalone component and pass your function to the `fn` pipe.
+
 ```typescript
-import { FnPipe } from "@ngx-rock/memoize-pipe";
+import { Component } from '@angular/core';
+import { FnPipe } from '@ngx-rock/memoize-pipe';
 
 @Component({
-  selector: 'app-example',
+  selector: 'app-total',
   standalone: true,
-  imports: [FnPipe, CommonModule],
-  template: `{{ myFunction | fn : arg1 : arg2 }}`
+  imports: [FnPipe],
+  template: `
+    <strong>{{ calculateTotal | fn : items }}</strong>
+  `
 })
-export class ExampleComponent {}
+export class TotalComponent {
+  items = [
+    { price: 20, quantity: 2 },
+    { price: 15, quantity: 1 }
+  ];
+
+  calculateTotal = (items: Array<{ price: number; quantity: number }>): number => {
+    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  };
+}
 ```
 
-**Module-based approach:**
+## Before And After
+
+Without the pipe, Angular can call a template method during every change detection cycle:
+
 ```typescript
-import { FnPipe } from "@ngx-rock/memoize-pipe";
+@Component({
+  selector: 'app-user',
+  template: `
+    <div>{{ formatUser(user, preferences) }}</div>
+  `
+})
+export class UserComponent {
+  formatUser(user: User, preferences: UserPreferences): string {
+    return `${user.name} (${preferences.theme})`;
+  }
+}
+```
+
+With `fn`, the function is called again only when the function reference or one of the pipe arguments changes:
+
+```typescript
+import { FnPipe } from '@ngx-rock/memoize-pipe';
+
+@Component({
+  selector: 'app-user',
+  standalone: true,
+  imports: [FnPipe],
+  template: `
+    <div>{{ formatUser | fn : user : preferences }}</div>
+  `
+})
+export class UserComponent {
+  formatUser = (user: User, preferences: UserPreferences): string => {
+    return `${user.name} (${preferences.theme})`;
+  };
+}
+```
+
+## What It Does
+
+`FnPipe` helps with expensive synchronous computations in Angular templates:
+
+- formatting values from several inputs
+- calculating totals
+- sorting or filtering already-loaded arrays
+- mapping view models for display
+- avoiding repeated method calls during change detection
+
+It is intentionally tiny. The package exports a standalone Angular pipe named `fn`.
+
+## How It Works
+
+`FnPipe` relies on Angular pure pipe behavior.
+
+Angular pipes are pure by default. For a pure pipe binding, Angular calls `transform` only when an input changes by reference. This means:
+
+- primitive arguments are compared by value
+- objects and arrays are compared by reference
+- the function itself is also an input, so keep its reference stable
+- there is no global cache and no deep equality check
+
+This is why arrow function properties are recommended. They keep the function reference stable and preserve `this`.
+
+```typescript
+export class ExampleComponent {
+  multiplier = 10;
+
+  multiplyItems = (items: number[]): number[] => {
+    return items.map(item => item * this.multiplier);
+  };
+}
+```
+
+```html
+{{ multiplyItems | fn : items }}
+```
+
+## More Examples
+
+### Multiple Arguments
+
+```typescript
+formatPrice = (amount: number, currency: string, locale: string): string => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency
+  }).format(amount);
+};
+```
+
+```html
+{{ formatPrice | fn : total : 'USD' : 'en-US' }}
+```
+
+### Filtering A List
+
+```typescript
+filterUsers = (users: User[], query: string): User[] => {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return users;
+  }
+
+  return users.filter(user => user.name.toLowerCase().includes(normalizedQuery));
+};
+```
+
+```html
+@for (user of filterUsers | fn : users : searchQuery; track user.id) {
+  <span>{{ user.name }}</span>
+}
+```
+
+Create a new `users` array when the list changes. Mutating the same array in place will not trigger a pure pipe recalculation.
+
+### Mapping Display Data
+
+```typescript
+toUserLabel = (user: User, roleNames: Record<string, string>): string => {
+  return `${user.name} - ${roleNames[user.role] ?? 'Unknown role'}`;
+};
+```
+
+```html
+{{ toUserLabel | fn : user : roleNames }}
+```
+
+### Using With Module-Based Angular Apps
+
+```typescript
+import { NgModule } from '@angular/core';
+import { FnPipe } from '@ngx-rock/memoize-pipe';
 
 @NgModule({
-  imports: [FnPipe],
-  // ...
+  imports: [FnPipe]
 })
 export class AppModule {}
 ```
 
-## Benefits
+## When To Use It
 
-✅ **Easy to use** - minimal code changes required  
-✅ **Type safety** - full TypeScript support  
-✅ **Performance** - automatic memoization  
-✅ **Universal** - works with any functions  
-✅ **Standalone** - supports standalone components  
+Use `fn` when:
 
-## Important Notes
+- the function is synchronous
+- the function is pure for the same inputs
+- the computation is expensive enough to matter
+- the arguments use immutable updates or stable references
+- creating a dedicated custom pipe would be unnecessary overhead
 
-⚠️ **Pure functions**: For memoization to work correctly, functions should be pure (return the same result for the same arguments)
+## When Not To Use It
 
-⚠️ **Reference types**: Memoization works based on reference comparison. For objects and arrays, ensure you create new instances when data changes
+Do not use `fn` when:
 
-⚠️ **Memory**: Function results are cached for the component's lifetime. For components with many unique calls, monitor memory consumption
+- the function has side effects
+- the function depends on hidden mutable state
+- the function returns different results for the same inputs
+- the operation is asynchronous
+- a dedicated domain pipe would make the template clearer
 
-## Compatibility
+For asynchronous work, use Angular's `async` pipe with an `Observable`, `Promise`, or signal-based state.
 
-| memoize-pipe | Angular   | TypeScript |
-|--------------|-----------|------------|
-| 0.x.x        | 13.x.x    | ~4.7.x     |
-| 1.x.x        | 14.x.x    | ~4.8.x     |
-| 2.x.x        | 17.x.x    | ~5.2.x     |
-| 18.x.x       | 18.x.x    | ~5.4.x     |
-| 19.x.x       | 19.x.x    | ~5.6.x     |
-| 20.x.x       | 20.x.x    | ~5.8.x     |
-| 21.x.x       | 21.x.x    | ~5.9.x     |
+## Notes
 
-## Frequently Asked Questions
+### Stable Function References
 
-**Q: When should I use the fn pipe?**  
-A: Use it for expensive computations in templates, especially for filtering, sorting, and data formatting.
+Prefer arrow function properties:
 
-**Q: How does caching work?**  
-A: Results are cached based on input arguments. When any argument changes, the function is executed again.
+```typescript
+formatName = (user: User): string => {
+  return `${user.firstName} ${user.lastName}`;
+};
+```
 
-**Q: Can I use it with async functions?**  
-A: No, fn pipe is designed only for synchronous functions. For async operations, use the async pipe combined with Observable.
+Avoid creating functions inline in the template or returning a new function from a getter.
+
+### Reference Types
+
+Objects and arrays are compared by reference. If an object or array changes, create a new instance:
+
+```typescript
+this.items = [...this.items, newItem];
+```
+
+Avoid in-place mutation if you expect the pipe to recalculate:
+
+```typescript
+this.items.push(newItem);
+```
+
+## FAQ
+
+**Does this pipe implement its own memoization cache?**  
+No. It uses Angular pure pipe caching for the current binding. Angular skips the pipe call while the function reference and arguments stay unchanged.
+
+**Can I use it with async functions?**  
+No. `fn` is designed for synchronous functions. Use Angular's `async` pipe for async values.
+
+**Does it do deep equality for objects and arrays?**  
+No. Angular pure pipes use reference checks for objects and arrays.
+
+**Is it tree-shakable?**  
+Yes. The package has no side effects and exports a standalone pipe.
 
 ---
 

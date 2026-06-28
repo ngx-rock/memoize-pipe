@@ -1,0 +1,8 @@
+{
+  "paths": [
+    "projects/memoize-pipe-lib/src"
+  ],
+  "minimumTokens": 50,
+  "failOnViolation": true,
+  "angularInlineTemplates": true
+}
