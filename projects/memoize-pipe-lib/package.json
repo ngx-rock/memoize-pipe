@@ -12,11 +12,6 @@
     "url": "https://github.com/ngx-rock/memoize-pipe/issues"
   },
   "homepage": "https://github.com/ngx-rock/memoize-pipe#readme",
-  "engines": {
-    "node": "^22.22.3 || ^24.15.0 || >=26.0.0",
-    "npm": ">=9.0.0",
-    "pnpm": ">=8.0.0"
-  },
   "peerDependencies": {
     "@angular/core": ">=19.0.0"
   },
